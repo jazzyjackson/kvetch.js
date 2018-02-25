@@ -4,7 +4,7 @@ I really like using the fetch API packaged in evergreen browsers, but I was gett
 
 A lot of people use axios, request, or other libraries on npm, but I didn't want to add extra features and a bunch of dependencies, I just wanted to prevent repeating myself using the native API.
 
-If you need it to work on browsers without fetch, just bring in some fetch polyfill can define that first, kvetch will use window.fetch just fine.
+If you need it to work on browsers without fetch, just bring in some fetch polyfill and define that first, kvetch will use window.fetch just fine.
 
 ### `kvetch.get/post/put/delete/options(URL::string[, QueryObject::Object, Body::*)`
 You can leave the QueryObject and the Body blank if you don't need them.
