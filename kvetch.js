@@ -40,7 +40,11 @@
 					redirect: 'error'
 				}, bodyBuilder(optionalBody))
 
-				return fetch(url + '?' + kv2query(queryObject), options)                
+				return fetch(url + '?' + kv2query(queryObject), options).then(response => {
+					// actually I'd prefer it if error codes got thrown to a catch block
+					if(!response.ok) throw new Error(response); 
+					else return response; 
+				})
 			}
 		}
 	})
