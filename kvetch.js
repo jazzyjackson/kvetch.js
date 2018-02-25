@@ -1,4 +1,5 @@
-/* - make a global method to prefer over 'fetch' api 
+/* - Public Domain software by Colten Jackson
+ * - make a global method to prefer over 'fetch' api 
  * - pass an object to convert key:value pairs to a properly encoded querystring (k:v, hence, kvetch)
  * - use a Proxy with a getter so you can call 'kvetch.get()','kvetch.put()','kvetch.delete()' and so on with a single function
  * * */

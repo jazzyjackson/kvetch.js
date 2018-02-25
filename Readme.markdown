@@ -30,4 +30,25 @@ If you give an Object as a Body, it will be JSON stringified and sent with an `a
 </script>
 ```
 
-Offered as Public Domain, no warranty. Pull Requests Appreciated.
+Uses Proxy to pass on the http method to the options object, whole thing (minus some helper functions) looks like:
+```js
+window.kvetch = new Proxy({}, {
+    get: (target, name) => {
+        return (url, queryObject = {}, optionalBody) => {
+            /* can't do anything with an url */
+            if(!url || url.constructor != String) throw new Error("first argument URL must be a string.")
+            /* it's okay if queryObject is left blank, but if its truthy it better be an object */
+            if(queryObject && queryObject.constructor != Object) throw new Error("second argument QueryObject must be an object or nothing at all.")
+            /* optionalBody will have to switch between content types for string, object -> JSON, or raw byte array */
+
+            options = Object.assign({
+                method: name.toUpperCase(),
+                credentials: 'same-origin',
+                redirect: 'error'
+            }, bodyBuilder(optionalBody))
+
+            return fetch(url + '?' + kv2query(queryObject), options)                
+        }
+    }
+})
+```
