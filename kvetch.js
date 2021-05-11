@@ -36,7 +36,7 @@
 
 				options = Object.assign({
 					method: name.toUpperCase(),
-					credentials: 'same-origin',
+					credentials: 'include',
 					redirect: 'error'
 				}, bodyBuilder(optionalBody))
 
